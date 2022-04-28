@@ -9,11 +9,11 @@ namespace TestLibrary
 {
     public class Triangle:Figure
     {
-        double sideA;
-        double sideB;
-        double sideC;
+        decimal _sideA;
+        decimal _sideB;
+        decimal _sideC;
 
-        public Triangle(double A, double B, double C)
+        public Triangle(decimal A, decimal B, decimal C)
         {
             if ((A+B<=C)^(A+C<=B)^(B+C<=A))
             {
@@ -21,30 +21,31 @@ namespace TestLibrary
             }
             if ((A > 0) & (B > 0) & (C > 0))
             {
-                sideA = A;
-                sideB = B;
-                sideC = C;
+                _sideA = A;
+                _sideB = B;
+                _sideC = C;
             }
             else throw new Exception("Все стороны треугольника должны быть > 0 ");
         }
 
-        public override double calculateArea()
+        public override decimal calculateArea()
         {
-            double p = (sideA + sideB + sideC) / 2;
-            return Math.Sqrt(p * (p - sideA) * (p - sideB) * (p - sideC));
+            decimal p = (_sideA + _sideB + _sideC) / 2;
+            decimal x = (p * (p - _sideA) * (p - _sideB) * (p - _sideC));
+            return (decimal)Math.Sqrt((double)x);
         }
 
         public bool checkIfTriangleIsRight()
         {
-            if ((sideA > sideB) & (sideA > sideC) & (sideA * sideA == sideB * sideB + sideC * sideC))
+            if ((_sideA > _sideB) & (_sideA > _sideC) & (_sideA * _sideA == _sideB * _sideB + _sideC * _sideC))
             {
                 return true;
             }
-            else if ((sideB > sideA) & (sideB > sideC) & (sideB * sideB == sideA * sideA + sideC * sideC))
+            else if ((_sideB > _sideA) & (_sideB > _sideC) & (_sideB * _sideB == _sideA * _sideA + _sideC * _sideC))
             {
                 return true;
             }
-            else if ((sideC > sideA) & (sideC > sideB) & (sideC * sideC == sideB * sideB + sideA * sideA))
+            else if ((_sideC > _sideA) & (_sideC > _sideB) & (_sideC * _sideC == _sideB * _sideB + _sideA * _sideA))
             {
                 return true;
             }

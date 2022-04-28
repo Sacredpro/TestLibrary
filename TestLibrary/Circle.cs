@@ -4,21 +4,22 @@ namespace TestLibrary
 {
     public class Circle:Figure
     {
-        double r;
-        const double p = 3.14;
-        public Circle (double R)
+        decimal _radius;
+        const decimal pi = 3.14m;
+
+        public Circle (decimal R)
         {
             if (R <= 0)
             {
                 throw new Exception("Радиус меньше 0");
             }
 
-            r = R;
+            _radius = R;
         }
 
-        public override double calculateArea()
+        public override decimal calculateArea()
         {
-            return p * r * r;
+            return pi * _radius * _radius;
         }
     }
 }
