@@ -1,37 +1,36 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using TestLibrary;
 
 namespace UnitTests
 {
-        [TestClass]
-        public class TriangleTests
+    [TestClass]
+    public class CircleTests
+    {       
+        [TestMethod]
+        public void Circle_СalculateAreaTest()
         {
-        public Circle _circle;
-        public Circle _badCircle;
-            
+            var radius = 2;
 
-            [TestInitialize]
-            public void Init()
-            {
-           
-            _circle = new Circle(2);
-            }
+            var circle = new Circle(radius);
 
-            [TestMethod]
-            public void Circle_calculateAreaTest()
-            {
-                Assert.AreEqual(12.56, _circle.calculateArea());
-            }
+            var area = (decimal)Math.PI * radius * radius;
 
-            [TestMethod]
-            [ExpectedException(typeof(Exception))]
-        public void Circle_BadDataTest()
-            {
-            _badCircle = new Circle(0);
+            Assert.AreEqual(area, circle.CalculateArea());
+        }
 
-              
-            }
-        
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void Circle_BadDataTestZero()
+        {
+            var badCircle = new Circle(0);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void Circle_BadDataTestNegative()
+        {
+            var badCircle = new Circle(-1);
+        }
     }
 }

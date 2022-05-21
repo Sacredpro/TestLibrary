@@ -1,62 +1,63 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestLibrary;
 
 namespace UnitTests
 {
     [TestClass]
-    public class CircleTests
+    public class TriangleTests
     {
-        public Triangle _rightTriangle;
-        public Triangle _triangle;
-        public Triangle _badTriangle;
+        private Triangle _rightTriangle;
+        private Triangle _triangle;    
      
 
         [TestInitialize]
         public void Init()
-        {
-        
+        {        
             _rightTriangle = new Triangle(3,4,5);
             _triangle = new Triangle(2, 4, 5);
         }
 
         [TestMethod]
-        public void Triangle_calculateAreaTest()
+        public void Triangle_CalculateAreaTest()
         {
+            decimal p = (3 + 4 + 5) / 2;
+            decimal x = (p * (p - 3) * (p - 4) * (p - 5));
 
-            Assert.AreEqual(3.79, Math.Round(_triangle.calculateArea(),2));
-
-            // ???
+            Assert.AreEqual((decimal)Math.Sqrt((double)x), _rightTriangle.CalculateArea());
         }
 
         [TestMethod]
-        public void Triangle_checkIfTriangleIsRightTest()
+        public void Triangle_CheckIsRightTest()
         {
-            Assert.AreEqual(true, _rightTriangle.checkIfTriangleIsRight());
+            Assert.AreEqual(true, _rightTriangle.СheckIsRight());
         }
 
         [TestMethod]
-        public void Triangle_checkIfTriangleIsRightTest2()
+        public void Triangle_CheckIsRightTestNotRight()
         {
-            Assert.AreEqual(false, _triangle.checkIfTriangleIsRight());
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(Exception))]
-        public void Triangle_BadDataTest()
-        {
-            _badTriangle = new Triangle(1,2,3);
+            Assert.AreEqual(false, _triangle.СheckIsRight());
         }
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
-        public void Triangle_BadDataTest2()
+        public void Triangle_BadDataTestWrongSides()
         {
-            _badTriangle = new Triangle(0, 2, 3);
+            Triangle badTriangle = new Triangle(1,2,3);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void Triangle_BadDataTestZero()
+        {
+            Triangle badTriangle = new Triangle(0, 0, 0);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void Triangle_BadDataTestNegative()
+        {
+            Triangle badTriangle = new Triangle(-1,-2,-3);
         }
 
 
