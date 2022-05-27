@@ -12,7 +12,7 @@ namespace TestLibrary
         {
             if ((sideA+sideB<=sideC)^(sideA+sideC<=sideB)^(sideB+sideC<=sideA))
             {
-                throw new Exception("Две стороны треугольника в сумме всегда больше третьей");
+                throw new Exception("The sum of any 2 sides of a triangle must always be greater than the third side");
             }
             if ((sideA > 0) & (sideB > 0) & (sideC > 0))
             {
@@ -20,7 +20,7 @@ namespace TestLibrary
                 _sideB = sideB;
                 _sideC = sideC;
             }
-            else throw new Exception("Все стороны треугольника должны быть > 0 ");
+            else throw new Exception("All sides of a triangle must be greater than zero");
         }
 
         public override decimal CalculateArea()
